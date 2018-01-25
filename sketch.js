@@ -3,7 +3,6 @@ function make2DArray(cols,rows){
 	let arr = new Array(cols);
 	for (let i = 0 ;i<arr.length;i++){
 		arr[i] = new Array(rows);
-
 	}
 	return arr;
 }
@@ -11,13 +10,14 @@ function make2DArray(cols,rows){
 let grid;
 let cols;
 let rows;
+
 let resolution=10;
 
 function setup() {
 	createCanvas(1000,1000);
 	cols=width/resolution;
 	rows=height/resolution;
-
+	//Initialize 2D array with a random binary value
 	grid=make2DArray(cols,rows);
 	for(let i=0;i<cols;i++){
 		for(let j=0;j<rows;j++){
@@ -29,22 +29,22 @@ function setup() {
 function draw() {
 	background(0);
 
-
 	for(let i=0;i<cols;i++){
 		for(let j=0;j<rows;j++){
 			let x=i*resolution;
 			let y=j*resolution;
 			if(grid[i][j]==1){
+				//Draw white squares if they're turned on
 				fill(255);
 				stroke(0);
 				rect(x,y,resolution-1,resolution-1);
 			}
 		}
 	}
-
+	
+	
 	let next=make2DArray(cols,rows);
-
-//compute next based on grid
+	//calculate the next state of the game based on current state
 	for(let i=0;i<cols;i++){
 		for(let j=0;j<rows;j++){
 			let state=grid[i][j];
